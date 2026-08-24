@@ -1,0 +1,76 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Comparator;
+
+// 1. Student Class definition
+class Student {
+    private final int id;
+    private final String name;
+    private final double cgpa;
+
+    public Student(int id, String name, double cgpa) {
+        this.id = id;
+        this.name = name;
+        this.cgpa = cgpa;
+    }
+
+    public int getID() {
+        return this.id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public double getCGPA() {
+        return this.cgpa;
+    }
+}
+
+// 2. Priorities Class definition
+class Priorities {
+    public List<Student> getStudents(List<String> events) {
+        // Explicitly passed <Student> inside PriorityQueue constructor to fix Java 7 bug
+        PriorityQueue<Student> pq = new PriorityQueue<Student>(11, new Comparator<Student>() {
+            @Override
+            public int compare(Student s1, Student s2) {
+                // Condition 1: Highest CGPA first (descending order)
+                if (Double.compare(s2.getCGPA(), s1.getCGPA()) != 0) {
+                    return Double.compare(s2.getCGPA(), s1.getCGPA());
+                }
+                // Condition 2: Alphabetical name order (ascending order)
+                if (!s1.getName().equals(s2.getName())) {
+                    return s1.getName().compareTo(s2.getName());
+                }
+                // Condition 3: Lowest ID first (ascending order)
+                return Integer.compare(s1.getID(), s2.getID());
+            }
+        });
+
+        // Parse and execute each string event command
+        for (String event : events) {
+            String[] parts = event.split(" ");
+            String command = parts[0];
+
+            if (command.equals("ENTER")) {
+                String name = parts[1];
+                double cgpa = Double.parseDouble(parts[2]);
+                int id = Integer.parseInt(parts[3]);
+                pq.add(new Student(id, name, cgpa));
+            } else if (command.equals("SERVED")) {
+                if (!pq.isEmpty()) {
+                    pq.poll(); // Remove highest priority student
+                }
+            }
+        }
+
+        // Dequeue items sequentially to preserve priority ordering in final list
+        List<Student> remainingStudents = new ArrayList<Student>();
+        while (!pq.isEmpty()) {
+            remainingStudents.add(pq.poll());
+        }
+        
+        return remainingStudents;
+    }
+}
