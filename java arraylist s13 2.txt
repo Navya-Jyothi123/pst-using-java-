@@ -1,0 +1,55 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        // Read the total number of lines
+        int n = sc.nextInt();
+        
+        // Create a dynamic 2D structure (List of Lists)
+        ArrayList<ArrayList<Integer>> linesList = new ArrayList<ArrayList<Integer>>();
+        
+        for (int i = 0; i < n; i++) {
+            // Read the number of elements on the current line
+            int d = sc.nextInt();
+            ArrayList<Integer> currentLine = new ArrayList<Integer>();
+            
+            for (int j = 0; j < d; j++) {
+                currentLine.add(sc.nextInt());
+            }
+            linesList.add(currentLine);
+        }
+        
+        // Read the total number of queries
+        int q = sc.nextInt();
+        
+        for (int i = 0; i < q; i++) {
+            // x represents the line number, y represents the position in that line
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+            
+            // Adjust indices for 0-based indexing (HackerRank uses 1-based indexing)
+            int lineIndex = x - 1;
+            int elementIndex = y - 1;
+            
+            // Check if the requested line index exists
+            if (lineIndex >= 0 && lineIndex < linesList.size()) {
+                ArrayList<Integer> selectedLine = linesList.get(lineIndex);
+                
+                // Check if the requested element position exists inside that line
+                if (elementIndex >= 0 && elementIndex < selectedLine.size()) {
+                    System.out.println(selectedLine.get(elementIndex));
+                } else {
+                    System.out.println("ERROR!");
+                }
+            } else {
+                System.out.println("ERROR!");
+            }
+        }
+        
+        sc.close();
+    }
+}
