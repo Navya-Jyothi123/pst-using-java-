@@ -1,0 +1,93 @@
+import java.util.*;
+
+class UndergroundSystem {
+
+    private Map<Integer, CheckInData> checkIns;
+    private Map<String, int[]> journeyData;
+
+    public UndergroundSystem() {
+        checkIns = new HashMap<>();
+        journeyData = new HashMap<>();
+    }
+
+    static class CheckInData {
+        String stationName;
+        int time;
+
+        CheckInData(String stationName, int time) {
+            this.stationName = stationName;
+            this.time = time;
+        }
+    }
+
+    public void checkIn(int id, String stationName, int t) {
+        checkIns.put(id, new CheckInData(stationName, t));
+    }
+
+    public void checkOut(int id, String stationName, int t) {
+        CheckInData checkIn = checkIns.get(id);
+
+        String route = checkIn.stationName + "->" + stationName;
+        int travelTime = t - checkIn.time;
+
+        int[] data = journeyData.getOrDefault(route, new int[2]);
+        data[0] += travelTime; // Total travel time
+        data[1]++;             // Number of trips
+
+        journeyData.put(route, data);
+        checkIns.remove(id);
+    }
+
+    public double getAverageTime(String startStation, String endStation) {
+        String route = startStation + "->" + endStation;
+        int[] data = journeyData.get(route);
+
+        return (double) data[0] / data[1];
+    }
+}import java.util.*;
+
+class UndergroundSystem {
+
+    private Map<Integer, CheckInData> checkIns;
+    private Map<String, int[]> journeyData;
+
+    public UndergroundSystem() {
+        checkIns = new HashMap<>();
+        journeyData = new HashMap<>();
+    }
+
+    static class CheckInData {
+        String stationName;
+        int time;
+
+        CheckInData(String stationName, int time) {
+            this.stationName = stationName;
+            this.time = time;
+        }
+    }
+
+    public void checkIn(int id, String stationName, int t) {
+        checkIns.put(id, new CheckInData(stationName, t));
+    }
+
+    public void checkOut(int id, String stationName, int t) {
+        CheckInData checkIn = checkIns.get(id);
+
+        String route = checkIn.stationName + "->" + stationName;
+        int travelTime = t - checkIn.time;
+
+        int[] data = journeyData.getOrDefault(route, new int[2]);
+        data[0] += travelTime; // Total travel time
+        data[1]++;             // Number of trips
+
+        journeyData.put(route, data);
+        checkIns.remove(id);
+    }
+
+    public double getAverageTime(String startStation, String endStation) {
+        String route = startStation + "->" + endStation;
+        int[] data = journeyData.get(route);
+
+        return (double) data[0] / data[1];
+    }
+}

@@ -1,0 +1,26 @@
+
+import java.lang.reflect.Method;
+
+public class Solution {
+
+    public static <T> void printArray(T[] array) {
+        for (T element : array) {
+            System.out.println(element);
+        }
+    }
+
+    public static void main(String[] args) {
+        Integer[] intArray = {1, 2, 3};
+        String[] stringArray = {"Hello", "World"};
+
+        printArray(intArray);
+        printArray(stringArray);
+
+        // Check whether printArray is declared only once
+        for (Method method : Solution.class.getDeclaredMethods()) {
+            if (method.getName().equals("printArray")) {
+                // Do nothing
+            }
+        }
+    }
+}
