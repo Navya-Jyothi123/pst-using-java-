@@ -1,0 +1,30 @@
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        HashMap<String, String> contacts = new HashMap<>();
+
+        // Add contacts
+        contacts.put("Sharmila", "9876543210");
+        contacts.put("Joanne", "9876543211");
+        contacts.put("Priya", "9876543212");
+
+        // Search contact
+        String name = "Sharmila";
+
+        System.out.println("Search Contact:");
+        System.out.println(name + " : " + contacts.get(name));
+
+        // Update phone number
+        contacts.put("Sharmila", "9123456780");
+
+        System.out.println("\nAfter Updating:");
+        System.out.println("Sharmila : " + contacts.get("Sharmila"));
+
+        // Display all contacts
+        System.out.println("\nAll Contacts:");
+        System.out.println(contacts);
+    }
+}

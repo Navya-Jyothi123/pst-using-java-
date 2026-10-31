@@ -1,0 +1,27 @@
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Stack<String> history = new Stack<>();
+
+        // Visiting webpages
+        history.push("Google");
+        history.push("YouTube");
+        history.push("Instagram");
+        history.push("Facebook");
+
+        System.out.println("Browser History:");
+        System.out.println(history);
+
+        // Back button
+        System.out.println("\nPressing Back Button:");
+
+        System.out.println("Removed Page: " + history.pop());
+
+        System.out.println("Current Page: " + history.peek());
+
+        System.out.println("Updated History: " + history);
+    }
+}

@@ -1,0 +1,24 @@
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        TreeSet<Integer> marks = new TreeSet<>();
+
+        // Adding student marks
+        marks.add(85);
+        marks.add(90);
+        marks.add(75);
+        marks.add(90);
+        marks.add(60);
+        marks.add(85);
+
+        // Display sorted unique marks
+        System.out.println("Unique Marks in Ascending Order:");
+
+        for (int m : marks) {
+            System.out.println(m);
+        }
+    }
+}

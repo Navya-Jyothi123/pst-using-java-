@@ -1,0 +1,21 @@
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        HashMap<Integer, Integer> students = new HashMap<>();
+
+        // Store roll numbers and marks
+        students.put(101, 85);
+        students.put(102, 90);
+        students.put(103, 78);
+        students.put(104, 95);
+
+        // Display marks of a particular student
+        int rollNo = 102;
+
+        System.out.println("Roll Number: " + rollNo);
+        System.out.println("Student Marks: " + students.get(rollNo));
+    }
+}

@@ -1,0 +1,29 @@
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayList<String> student1 = new ArrayList<>();
+
+        student1.add("Java");
+        student1.add("Python");
+        student1.add("DBMS");
+        student1.add("Maths");
+
+        ArrayList<String> student2 = new ArrayList<>();
+
+        student2.add("Python");
+        student2.add("Java");
+        student2.add("AI");
+        student2.add("English");
+
+        System.out.println("Student 1 Subjects: " + student1);
+        System.out.println("Student 2 Subjects: " + student2);
+
+        // Find common subjects
+        student1.retainAll(student2);
+
+        System.out.println("Common Subjects: " + student1);
+    }
+}

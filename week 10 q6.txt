@@ -1,0 +1,24 @@
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        LinkedHashSet<String> items = new LinkedHashSet<>();
+
+        // Adding purchased items
+        items.add("Laptop");
+        items.add("Mobile");
+        items.add("Headphones");
+        items.add("Mobile");
+        items.add("Watch");
+        items.add("Laptop");
+
+        // Display unique items
+        System.out.println("Unique Purchased Items:");
+
+        for (String item : items) {
+            System.out.println(item);
+        }
+    }
+}
