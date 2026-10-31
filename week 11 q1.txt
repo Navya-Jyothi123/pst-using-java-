@@ -1,0 +1,32 @@
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        int[] nums = {2, 2, 1, 1, 1, 2, 2};
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int num : nums) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+
+        for (int num : nums) {
+            if (map.get(num) > nums.length / 2) {
+                System.out.println("Majority Element: " + num);
+                System.out.println("First Index: " + firstIndex(nums, num));
+                break;
+            }
+        }
+    }
+
+    static int firstIndex(int[] nums, int target) {
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == target) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}

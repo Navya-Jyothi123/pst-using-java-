@@ -1,0 +1,34 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        int[] arr = {1, 4, 4, 4, 5, 3};
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        // Count each bird type
+        for (int bird : arr) {
+            map.put(bird, map.getOrDefault(bird, 0) + 1);
+        }
+
+        int maxCount = 0;
+        int result = 0;
+
+        // Find the most frequent bird type
+        for (int bird : map.keySet()) {
+
+            int count = map.get(bird);
+
+            if (count > maxCount) {
+                maxCount = count;
+                result = bird;
+            }
+            else if (count == maxCount && bird < result) {
+                result = bird;
+            }
+        }
+
+        System.out.println("Most frequent bird type: " + result);
+    }
+}
