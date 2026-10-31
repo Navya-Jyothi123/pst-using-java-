@@ -1,0 +1,35 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        HashMap<String, Integer> map = new HashMap<>();
+
+        // Count hashtag frequency
+        for (int i = 0; i < n; i++) {
+            String tag = sc.next();
+
+            map.put(tag, map.getOrDefault(tag, 0) + 1);
+        }
+
+        // Store hashtags in a list
+        ArrayList<String> list = new ArrayList<>(map.keySet());
+
+        // Sort by frequency, then lexicographical order
+        Collections.sort(list, (a, b) -> {
+            if (map.get(a).equals(map.get(b))) {
+                return a.compareTo(b);
+            }
+            return map.get(b) - map.get(a);
+        });
+
+        // Display result
+        for (String tag : list) {
+            System.out.println(tag + " : " + map.get(tag));
+        }
+    }
+}

@@ -1,0 +1,29 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        String[] words = {"eat", "tea", "tan", "ate", "nat", "bat"};
+
+        HashMap<String, ArrayList<String>> map = new HashMap<>();
+
+        // Group anagrams
+        for (String word : words) {
+
+            char[] ch = word.toCharArray();
+
+            Arrays.sort(ch);
+
+            String key = new String(ch);
+
+            map.putIfAbsent(key, new ArrayList<>());
+
+            map.get(key).add(word);
+        }
+
+        // Display groups
+        for (ArrayList<String> group : map.values()) {
+            System.out.println(group);
+        }
+    }
+}
